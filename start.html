@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Regelsegmentierung – browserbasierte Werkzeuge zur Segmentierung und Auswertung von Texten.">
+  <title>regelsegmentierung</title>
+  <link rel="icon" href="./media/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand-link" href="https://www.physikdidaktik.ovgu.de/" target="_blank" rel="noopener noreferrer" aria-label="Didaktik der Physik an der OVGU">
+        <span class="brand-fallback" aria-hidden="true"><strong>OVGU</strong><span>Fakultät für Naturwissenschaften</span></span>
+        <img class="brand-logo" src="https://www.cd.ovgu.de/cd_media/CD_OVGU/Fakult%C3%A4tsmerkmale%2BAbb_/Logo_Abbildungen/FNW/Signet_FNW_2-height-145-width-621.svg" alt="Otto-von-Guericke-Universität Magdeburg – Fakultät für Naturwissenschaften" onerror="this.hidden=true">
+      </a>
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <a href="./index.html" aria-current="page">Start</a>
+        <a href="./solo.html">Einzeltext</a>
+        <a href="./multi.html">Mehrere Dateien</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="start-title">
+      <div className="max-w-xl">
+        <span class="eyebrow">Didaktik der Physik</span>
+        <h1 id="start-title">Automatisierte Regelsegmentierung</h1>
+        <p>Diese automatisierte Regelsegmentierung zerlegt Texte anhand frei wählbarer Trennregeln in Segmente. Einzeltexte können direkt eingegeben und ausgewertet werden (z.B. via copy-paste); mehrere TXT-Dateien lassen sich gemeinsam verarbeiten.</p>
+        <p><strong>Alles läuft lokal im Browser:</strong> Segmentierung, Zählung von Worthäufigkeiten sowie Dateiexport benötigt kein Backend. Textinhalte werden <u>nicht</u> an einen Server übertragen.</p>
+      </div>
+    </section>
+
+    <section class="tool-grid tool-grid-two" aria-label="Werkzeuge">
+      <a class="tool-card" href="./solo.html">
+        <span class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 5h16M4 9h16M4 13h10M4 17h7"/><path d="m16 14 4 4 4-4" transform="translate(-2 -1)"/></svg>
+        </span>
+        <h2>Einzeltext</h2>
+        <p>Einen Text fügen, Regeln auswählen und Segmente kopieren oder speichern.</p>
+        <span class="tool-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="tool-card" href="./multi.html">
+        <span class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v5h5M4 7v14h10"/></svg>
+        </span>
+        <h2>Mehrere Dateien</h2>
+        <p>Mehrere TXT-Dateien laden und gemeinsam segmentieren.</p>
+        <span class="tool-arrow" aria-hidden="true">→</span>
+      </a>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    Lukas Mientus & Linus von Au (2026) · <a href="https://www.physikdidaktik.ovgu.de/" target="_blank" rel="noopener noreferrer">Didaktik der Physik, OVGU</a>
+    <sub>mit Dank an Linus von Au</sub>
+  </footer>
+</body>
+</html>

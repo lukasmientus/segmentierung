@@ -1,0 +1,5 @@
+/* Dateiupload-spezifische Ergänzungen. Das Grundlayout liegt in index.css. */
+.inputfile:focus + .file-picker-label {
+  outline: 3px solid rgba(5, 165, 53, 0.22);
+  outline-offset: 2px;
+}

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Einzeltext mit frei wählbaren Regeln segmentieren und lokal exportieren.">
+  <title>Einzeltext · regelsegmentierung</title>
+  <link rel="icon" href="./media/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand-link" href="https://www.physikdidaktik.ovgu.de/" target="_blank" rel="noopener noreferrer" aria-label="Didaktik der Physik an der OVGU">
+        <span class="brand-fallback" aria-hidden="true"><strong>OVGU</strong><span>Fakultät für Naturwissenschaften</span></span>
+        <img class="brand-logo" src="https://www.cd.ovgu.de/cd_media/CD_OVGU/Fakult%C3%A4tsmerkmale%2BAbb_/Logo_Abbildungen/FNW/Signet_FNW_2-height-145-width-621.svg" alt="Otto-von-Guericke-Universität Magdeburg – Fakultät für Naturwissenschaften" onerror="this.hidden=true">
+      </a>
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <a href="./start.html">Start</a>
+        <a href="./solo.html" aria-current="page">Einzeltext</a>
+        <a href="./multi.html">Mehrere Dateien</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div className="max-w-xl">
+      <span class="eyebrow">Automatisierte Regmentierung</span>
+      <h1>Einzeltext</h1>
+      <p>Text einfügen, gewünschte Trennregeln aktivieren und anschließend segmentieren oder die Wortverteilung auswerten.</p>
+    </div>
+
+    <div class="workspace" id="content">
+      <section class="panel text-panel">
+        <div class="panel-header">
+          <h2>Text</h2>
+          <button class="secondary small" type="button" onclick="clearText()">Leeren</button>
+        </div>
+        <textarea class="textfield" id="textfield" spellcheck="true" placeholder="Text hier einfügen …" aria-label="Zu segmentierender Text"></textarea>
+
+        <div class="buttons">
+          <div id="segmentButtons">
+            <button type="button" onclick="segmentieren()">Segmentieren</button>
+            <button class="secondary" type="button" onclick="segmentCSV()">CSV speichern</button>
+            <button class="secondary" type="button" onclick="segmentTXT()">TXT speichern</button>
+          </div>
+          <div id="countButtons">
+            <button class="secondary" type="button" onclick="countWords()">Worthäufigkeiten bestimmen</button>
+            <button class="secondary" type="button" onclick="countCSV()">Worthäufigkeiten als CSV</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="settings-column" id="settingsColumn">
+        <section class="settings-card" id="textOptions">
+          <div class="settings-header"><h2>Trennregeln</h2></div>
+          <div class="option-list">
+            <label class="option-row"><input type="checkbox" id="punkt"> Satzende (. ? !)</label>
+            <label class="option-row"><input type="checkbox" id="komma"> Komma</label>
+            <label class="option-row"><input type="checkbox" id="und"> „und“</label>
+            <label class="option-row"><input type="checkbox" id="oder"> „oder“</label>
+            <label class="option-row"><input type="checkbox" id="dpunkt"> Doppelpunkt</label>
+            <label class="option-row"><input type="checkbox" id="klammer"> Klammerausdrücke</label>
+            <label class="option-row"><input type="checkbox" id="abkz"> Auch bei Abkürzungen trennen</label>
+          </div>
+        </section>
+
+        <details class="settings-card abbreviation-card" id="abkrz">
+          <summary class="abbreviation-summary">
+            <span class="settings-title">Abkürzungen</span>
+            <span class="disclosure-triangle" aria-hidden="true">▸</span>
+          </summary>
+          <div class="abbreviation-content">
+            <p class="muted">Diese Liste schützt Abkürzungen standardmäßig vor einer Trennung am Punkt.</p>
+            <div class="abbreviation-form">
+              <input class="text-input" type="text" id="input" autocomplete="off" placeholder="z. B.">
+              <button class="small" type="button" onclick="addList()">Hinzufügen</button>
+            </div>
+            <button class="secondary small" type="button" onclick="deleteList()">Eingabe aus Liste entfernen</button>
+            <ul class="liste" id="liste" aria-label="Abkürzungsliste"></ul>
+          </div>
+        </details>
+
+        <section class="settings-card word-count" id="wordCount">
+          <div class="settings-header">
+            <h2>Wortzählung</h2>
+            <button class="secondary small" id="hideCountButton" type="button" onclick="hideCount()">Schließen</button>
+          </div>
+          <div id="countTableBox">
+            <table id="countTable">
+              <thead><tr><th>Wort</th><th>Anzahl</th></tr></thead>
+              <tbody id="countTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <div class="popup" id="myPopupAdd" role="status"><span class="popuptext">Dieses Element ist schon vorhanden.</span></div>
+  <div class="popup" id="myPopupDel" role="status"><span class="popuptext">Dieses Element ist nicht vorhanden.</span></div>
+  <div class="Klammer" id="myPopupKlammer" role="alert"><span class="popuptext">Die Klammerung ist nicht korrekt.</span></div>
+
+  <footer class="site-footer">
+    Lukas Mientus & Linus von Au (2026) · <a href="https://www.physikdidaktik.ovgu.de/" target="_blank" rel="noopener noreferrer">Didaktik der Physik, OVGU</a>
+    <sub>mit Dank an Linus von Au</sub>
+  </footer>
+
+  <script src="./javascript/onload.js"></script>
+  <script src="./javascript/sidebar.js"></script>
+  <script src="./javascript/segmentier.js"></script>
+  <script src="./javascript/buttons.js"></script>
+  <script src="./javascript/count.js"></script>
+</body>
+</html>
